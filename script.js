@@ -22,10 +22,21 @@
     const url = `${scriptURL}?q=${encodeURIComponent(decodedText)}`;
     console.log("Sending to:", url);
 
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = url;
-    document.body.appendChild(iframe);
+   fetch(url)
+     .then(res => res.text())
+     .then(response => {
+       console.log("Server response:", response);
+       if (response.includes("Already scanned")) {
+         openModal(); // Optional modal
+         showStatus("⚠️ Already scanned", false);
+       } else {
+         showStatus("✅ Scan submitted successfully!", true);
+       }
+     })
+     .catch(err => {
+       console.error(err);
+       showStatus("❌ Network error", false);
+     });
 
     showStatus("✅ Scan submitted successfully!", true);
 
@@ -35,8 +46,6 @@
         showStatus("Ready to scan again.", true);
     }, 3000);
     }
-
-
 
     Html5Qrcode.getCameras().then(devices => {
       if (devices && devices.length) {
