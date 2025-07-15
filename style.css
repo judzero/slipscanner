@@ -1,0 +1,23 @@
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #reader {
+      width: 400px;
+      margin: auto;
+    }
+    #status {
+      margin-top: 20px;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
