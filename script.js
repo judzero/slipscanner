@@ -22,7 +22,10 @@
     const url = `${scriptURL}?q=${encodeURIComponent(decodedText)}`;
     console.log("Sending to:", url);
 
-    window.open(url, "_blank");
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = url;
+    document.body.appendChild(iframe);
 
     showStatus("✅ Scan submitted successfully!", true);
 
